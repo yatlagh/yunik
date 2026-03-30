@@ -233,6 +233,30 @@
         </div>
     </section>
 
+    <!-- Stats Counter -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+                <div class="text-center group">
+                    <div class="text-4xl md:text-6xl font-black tracking-tighter text-black mb-2 counter" data-target="50">0</div>
+                    <div class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400" data-i18n="stat_projects">Projects Delivered</div>
+                </div>
+                <div class="text-center group">
+                    <div class="text-4xl md:text-6xl font-black tracking-tighter text-black mb-2"><span class="counter" data-target="98">0</span>%</div>
+                    <div class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400" data-i18n="stat_satisfaction">Client Satisfaction</div>
+                </div>
+                <div class="text-center group">
+                    <div class="text-4xl md:text-6xl font-black tracking-tighter text-black mb-2 counter" data-target="4">0</div>
+                    <div class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400" data-i18n="stat_countries">Countries Served</div>
+                </div>
+                <div class="text-center group">
+                    <div class="text-4xl md:text-6xl font-black tracking-tighter text-cyan-500 mb-2">24/7</div>
+                    <div class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400" data-i18n="stat_support">Dedicated Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services -->
     <section id="services" class="py-20 bg-gray-50/40">
         <div class="container mx-auto px-6">
@@ -262,6 +286,42 @@
                     </div>
                     <h3 class="text-2xl font-black mb-4" data-i18n="serv3_title">Web Experience</h3>
                     <p class="text-gray-400 leading-relaxed font-medium text-sm" data-i18n="serv3_desc">Immersive, accessible, and responsive web design compliant with WCAG 2.1 standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work -->
+    <section class="py-20 bg-white overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-14">
+                <h2 class="text-4xl md:text-6xl font-black tracking-tight mb-6" data-i18n="process_title">How We <span class="text-cyan-500">Work</span>.</h2>
+                <p class="text-gray-400 text-lg font-medium" data-i18n="process_subtitle">A proven 4-step framework that turns ideas into market-leading digital products.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 relative">
+                <!-- Connecting line -->
+                <div class="hidden md:block absolute top-16 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-cyan-200 via-blue-200 to-cyan-200"></div>
+
+                <div class="relative text-center group">
+                    <div class="w-12 h-12 bg-cyan-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-lg font-black shadow-lg shadow-cyan-500/20 group-hover:scale-110 group-hover:rotate-3 transition-all">01</div>
+                    <h3 class="text-lg font-black mb-2" data-i18n="step1_title">Discovery</h3>
+                    <p class="text-gray-400 text-sm font-medium leading-relaxed" data-i18n="step1_desc">We deep-dive into your brand, audience, and goals to craft a tailored strategy.</p>
+                </div>
+                <div class="relative text-center group">
+                    <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-lg font-black shadow-lg shadow-blue-600/20 group-hover:scale-110 group-hover:rotate-3 transition-all">02</div>
+                    <h3 class="text-lg font-black mb-2" data-i18n="step2_title">Design</h3>
+                    <p class="text-gray-400 text-sm font-medium leading-relaxed" data-i18n="step2_desc">Pixel-perfect mockups and prototypes validated with real user feedback loops.</p>
+                </div>
+                <div class="relative text-center group">
+                    <div class="w-12 h-12 bg-black text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-lg font-black shadow-lg shadow-black/20 group-hover:scale-110 group-hover:rotate-3 transition-all">03</div>
+                    <h3 class="text-lg font-black mb-2" data-i18n="step3_title">Develop</h3>
+                    <p class="text-gray-400 text-sm font-medium leading-relaxed" data-i18n="step3_desc">Clean, scalable code built with modern frameworks. Weekly demos, zero surprises.</p>
+                </div>
+                <div class="relative text-center group">
+                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-lg font-black shadow-lg shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-all">04</div>
+                    <h3 class="text-lg font-black mb-2" data-i18n="step4_title">Launch & Scale</h3>
+                    <p class="text-gray-400 text-sm font-medium leading-relaxed" data-i18n="step4_desc">Deployment, analytics setup, and ongoing growth optimization to maximize ROI.</p>
                 </div>
             </div>
         </div>
@@ -503,6 +563,33 @@
         </div>
     </section>
 
+    <!-- CTA Banner -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="relative bg-black rounded-[3rem] p-12 md:p-20 text-center overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-blue-600/10"></div>
+                <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur">
+                        <span class="flex h-2 w-2 rounded-full bg-cyan-400 animate-pulse-slow"></span>
+                        <span class="text-[10px] font-black tracking-[0.3em] uppercase text-gray-400" data-i18n="cta_badge">Limited Availability</span>
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6 leading-tight" data-i18n="cta_title">Ready to Dominate<br>Your Market?</h2>
+                    <p class="text-gray-400 text-lg font-medium max-w-xl mx-auto mb-10" data-i18n="cta_desc">We only take on 3 new clients per month to ensure every project gets our full attention. Secure your spot today.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="scrollToSection('contact')" class="px-10 py-5 bg-white text-black rounded-full font-black text-xs tracking-widest uppercase hover:bg-cyan-400 hover:text-white transition-all hover:scale-105 shadow-xl active:scale-95" data-i18n="cta_btn_start">
+                            Book a Free Call
+                        </button>
+                        <button onclick="scrollToSection('services')" class="px-10 py-5 bg-white/5 border border-white/10 text-white rounded-full font-black text-xs tracking-widest uppercase hover:bg-white/10 transition-all active:scale-95" data-i18n="cta_btn_learn">
+                            See Our Work
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact / Footer -->
     <footer id="contact" class="bg-black text-white pt-20 pb-16">
         <div class="container mx-auto px-6">
@@ -666,11 +753,22 @@
                 hero_desc: "Yunik is where elite strategy meets cutting-edge technology. We fuse branding, AI, and design to build marketing ecosystems that dominate.",
                 hero_btn_start: "Get Started", hero_btn_experts: "Meet The Experts",
                 ref_title: "Trusted by Industry Leaders",
+                stat_projects: "Projects Delivered", stat_satisfaction: "Client Satisfaction", stat_countries: "Countries Served", stat_support: "Dedicated Support",
                 services_title: 'Built on <span class="text-cyan-500">Innovation</span>.',
                 services_subtitle: "We deliver proprietary technologies and strategic insights that typical agencies simply cannot match.",
                 serv1_title: "AI & Tech Architecture", serv1_desc: "Next-gen web apps, AI integration, and scalable front-end systems architected for performance.",
                 serv2_title: "Digital Strategy", serv2_desc: "Data-driven campaigns, brand positioning, and market penetration strategies that convert.",
                 serv3_title: "Web Experience", serv3_desc: "Immersive, accessible, and responsive web design compliant with WCAG 2.1 standards.",
+                process_title: 'How We <span class="text-cyan-500">Work</span>.', process_subtitle: "A proven 4-step framework that turns ideas into market-leading digital products.",
+                step1_title: "Discovery", step1_desc: "We deep-dive into your brand, audience, and goals to craft a tailored strategy.",
+                step2_title: "Design", step2_desc: "Pixel-perfect mockups and prototypes validated with real user feedback loops.",
+                step3_title: "Develop", step3_desc: "Clean, scalable code built with modern frameworks. Weekly demos, zero surprises.",
+                step4_title: "Launch & Scale", step4_desc: "Deployment, analytics setup, and ongoing growth optimization to maximize ROI.",
+                testimonials_title: 'What Clients <span class="text-cyan-500">Say</span>.', testimonials_subtitle: "Real feedback from people we've helped grow.",
+                review1_text: "Yunik completely transformed our online presence. Their strategic approach to our rebrand resulted in a 3x increase in qualified leads within the first quarter.",
+                review2_text: "The team at Yunik doesn't just build websites — they build growth engines. Our e-commerce revenue doubled after their redesign and SEO overhaul.",
+                review3_text: "Working with Yunik felt like having an in-house team. Their AI integration saved us 40+ hours per week in manual processes. Absolute game changers.",
+                cta_badge: "Limited Availability", cta_title: "Ready to Dominate<br>Your Market?", cta_desc: "We only take on 3 new clients per month to ensure every project gets our full attention. Secure your spot today.", cta_btn_start: "Book a Free Call", cta_btn_learn: "See Our Work",
                 portfolio_title: 'Selected <span class="text-cyan-500">Work</span>.', portfolio_subtitle: "A curated look at projects that pushed the boundaries of digital experience.",
                 proj1_title: "Benchmark Education", proj1_desc: "Complete digital overhaul — brand identity, UX design, and SEO-driven content strategy.",
                 proj2_title: "Greentoe", proj2_desc: "Performance marketing campaigns and conversion rate optimisation across paid channels.",
@@ -708,11 +806,22 @@
                 hero_desc: "Yunik est le point de rencontre entre stratégie d'élite et technologie de pointe. Nous fusionnons branding, IA et design pour bâtir des écosystèmes marketing dominants.",
                 hero_btn_start: "Commencer", hero_btn_experts: "Rencontrer les Experts",
                 ref_title: "Ils nous font confiance",
+                stat_projects: "Projets Livrés", stat_satisfaction: "Satisfaction Client", stat_countries: "Pays Servis", stat_support: "Support Dédié",
                 services_title: 'Fondé sur <span class="text-cyan-500">l\'Innovation</span>.',
                 services_subtitle: "Nous livrons des technologies propriétaires et des insights stratégiques que les agences classiques ne peuvent tout simplement pas égaler.",
                 serv1_title: "Architecture IA & Tech", serv1_desc: "Apps web nouvelle génération, intégration IA et systèmes front-end évolutifs architecturés pour la performance.",
                 serv2_title: "Stratégie Digitale", serv2_desc: "Campagnes basées sur les données, positionnement de marque et stratégies de pénétration de marché qui convertissent.",
                 serv3_title: "Expérience Web", serv3_desc: "Design web immersif, accessible et responsive, conforme aux normes WCAG 2.1.",
+                process_title: 'Comment Nous <span class="text-cyan-500">Travaillons</span>.', process_subtitle: "Un cadre éprouvé en 4 étapes qui transforme les idées en produits digitaux leaders du marché.",
+                step1_title: "Découverte", step1_desc: "Nous analysons en profondeur votre marque, audience et objectifs pour créer une stratégie sur mesure.",
+                step2_title: "Design", step2_desc: "Maquettes pixel-perfect et prototypes validés avec de véritables retours utilisateurs.",
+                step3_title: "Développement", step3_desc: "Code propre et évolutif avec des frameworks modernes. Démos hebdomadaires, zéro surprise.",
+                step4_title: "Lancement & Croissance", step4_desc: "Déploiement, configuration analytics et optimisation continue pour maximiser le ROI.",
+                testimonials_title: 'Ce que Disent les <span class="text-cyan-500">Clients</span>.', testimonials_subtitle: "Vrais retours de ceux que nous avons aidés à grandir.",
+                review1_text: "Yunik a complètement transformé notre présence en ligne. Leur approche stratégique a entraîné une augmentation de 3x des leads qualifiés dès le premier trimestre.",
+                review2_text: "L'équipe de Yunik ne construit pas juste des sites — ils construisent des moteurs de croissance. Notre chiffre d'affaires e-commerce a doublé après leur refonte.",
+                review3_text: "Travailler avec Yunik, c'est comme avoir une équipe interne. Leur intégration IA nous a fait gagner plus de 40h par semaine. De vrais game changers.",
+                cta_badge: "Disponibilité Limitée", cta_title: "Prêt à Dominer<br>Votre Marché ?", cta_desc: "Nous n'acceptons que 3 nouveaux clients par mois pour garantir une attention totale à chaque projet.", cta_btn_start: "Réserver un Appel", cta_btn_learn: "Voir Nos Travaux",
                 portfolio_title: 'Travaux <span class="text-cyan-500">Sélectionnés</span>.', portfolio_subtitle: "Un aperçu de projets qui ont repoussé les limites de l'expérience digitale.",
                 proj1_title: "Benchmark Education", proj1_desc: "Refonte digitale complète — identité de marque, design UX et stratégie de contenu SEO.",
                 proj2_title: "Greentoe", proj2_desc: "Campagnes de marketing à la performance et optimisation du taux de conversion sur les canaux payants.",
@@ -848,6 +957,34 @@
 
         initParticles();
         animateParticles();
+
+        // -------------------------------------------------------
+        // COUNTER ANIMATION
+        // -------------------------------------------------------
+        const counters = document.querySelectorAll('.counter');
+        let countersAnimated = false;
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated) {
+                    countersAnimated = true;
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000;
+                        const start = performance.now();
+                        function tick(now) {
+                            const elapsed = now - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            counter.textContent = Math.floor(eased * target);
+                            if (progress < 1) requestAnimationFrame(tick);
+                            else counter.textContent = target;
+                        }
+                        requestAnimationFrame(tick);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        counters.forEach(c => counterObserver.observe(c));
 
         // -------------------------------------------------------
         // UI

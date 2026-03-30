@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.notion.so)",
+      "WebFetch(domain:www.linear.app)",
+      "WebFetch(domain:www.vercel.com)",
+      "WebFetch(domain:stripe.com)",
+      "WebFetch(domain:www.notion.com)"
+    ]
+  }
+}
