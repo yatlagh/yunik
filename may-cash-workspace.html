@@ -1535,15 +1535,70 @@
   });
 
   // ═══════════════════════════════════════════════════════
-  // COMMENT SYSTEM — fully working with localStorage
+  // COMMENT SYSTEM — shared across all users via JSONBlob
+  // Storage URL is hardcoded; the bin acts as the shared
+  // database. Polled every 8s for near-real-time sync.
   // ═══════════════════════════════════════════════════════
-  const COMMENTS_KEY = 'rawaj-workspace-comments';
+  const COMMENTS_URL = 'https://jsonblob.com/api/jsonBlob/019d79a3-5d71-7acc-a3e6-82fb411a9996';
+  const POLL_INTERVAL = 8000; // ms
   let allComments = {};
-  try { allComments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}'); } catch (e) {}
+  let isSaving = false;
+  let lastFetchedSnapshot = '{}';
 
-  function saveComments() {
-    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(allComments)); } catch (e) {}
+  // Initial load — fetch from server
+  async function loadCommentsFromServer() {
+    try {
+      const res = await fetch(COMMENTS_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const snap = JSON.stringify(data.comments || {});
+      if (snap === lastFetchedSnapshot) return false; // no change
+      lastFetchedSnapshot = snap;
+      allComments = data.comments || {};
+      return true;
+    } catch (e) {
+      console.warn('[Comments] fetch failed:', e);
+      return false;
+    }
   }
+
+  // Save current state to server
+  async function saveComments() {
+    if (isSaving) return;
+    isSaving = true;
+    try {
+      const body = { comments: allComments };
+      const res = await fetch(COMMENTS_URL, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      lastFetchedSnapshot = JSON.stringify(allComments);
+    } catch (e) {
+      console.error('[Comments] save failed:', e);
+      showToast('Failed to save — check connection', true);
+    } finally {
+      isSaving = false;
+    }
+  }
+
+  // Re-render every comment-enabled phase
+  function renderAllPhaseComments() {
+    document.querySelectorAll('.phase-comments').forEach(wrap => {
+      const phase = wrap.closest('.phase');
+      if (phase.classList.contains('done') || phase.classList.contains('staging')) {
+        renderPhaseComments(wrap.dataset.phase);
+      }
+    });
+  }
+
+  // Polling loop — refresh every N seconds
+  async function pollComments() {
+    const changed = await loadCommentsFromServer();
+    if (changed) renderAllPhaseComments();
+  }
+  setInterval(pollComments, POLL_INTERVAL);
 
   function getCurrentUser() {
     // Use the authenticated session
@@ -1609,19 +1664,23 @@
 
       // Wire delete buttons
       list.querySelectorAll('[data-del]').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', async () => {
           const id = +btn.dataset.del;
+          // Pull latest before mutating to avoid clobbering others' edits
+          await loadCommentsFromServer();
           allComments[phaseId] = (allComments[phaseId] || []).filter(c => c.id !== id);
-          saveComments();
           renderPhaseComments(phaseId);
+          await saveComments();
           showToast('Comment deleted');
         });
       });
     }
   }
 
-  function addComment(phaseId, text) {
+  async function addComment(phaseId, text) {
     if (!text.trim()) return;
+    // Pull latest before adding so we don't clobber others' comments
+    await loadCommentsFromServer();
     const user = getCurrentUser();
     if (!allComments[phaseId]) allComments[phaseId] = [];
     allComments[phaseId].push({
@@ -1631,8 +1690,8 @@
       text: text.trim(),
       ts: Date.now()
     });
-    saveComments();
     renderPhaseComments(phaseId);
+    await saveComments();
     showToast('Comment posted');
   }
 
@@ -1697,10 +1756,13 @@
         }
       });
 
-      // Initial render
+      // Initial render (will be re-rendered after server fetch)
       renderPhaseComments(phaseId);
     }
   });
+
+  // Fetch shared comments from the server on page load, then render
+  loadCommentsFromServer().then(() => renderAllPhaseComments());
 
   // ═══════════════════════════════════════════════════════
   // TOAST
