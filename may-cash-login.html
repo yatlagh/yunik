@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>May Cash × Yunik — Sign In</title>
+
+<!-- Layout reference: kamal/src/components/AuthForm.tsx
+     Brand tokens reference: https://yatlagh.github.io/MAY-CASH/MAY-CASH/maycash-design-system.html -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* May Cash brand */
+    --mc-red:         #D9171B;
+    --mc-red-dark:    #9B1C1F;
+    --mc-red-darker:  #7A1518;
+    --mc-red-hover:   #E52D31;
+    --mc-red-light:   #F06B6E;
+    --mc-red-lighter: #F5A3A5;
+    --mc-red-lightest:#FDF0F0;
+
+    /* Neutrals */
+    --ink-900: #0f172a;
+    --ink-700: #334155;
+    --ink-500: #64748b;
+    --ink-300: #cbd5e1;
+    --ink-200: #e2e8f0;
+    --ink-100: #f1f5f9;
+    --ink-50:  #f8fafc;
+
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body:    'Inter', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--font-body);
+    color: var(--ink-900);
+    -webkit-font-smoothing: antialiased;
+    background: #fff;
+    overflow: hidden;
+  }
+
+
+  .auth-shell {
+    height: 100svh;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    overflow: hidden;
+  }
+  @media (max-width: 960px) {
+    .auth-shell { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
+    body { overflow: auto; }
+    .auth-hero { display: none !important; }
+  }
+
+  /* ─────────── LEFT — hero with mosque image ─────────── */
+  .auth-hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--mc-red-darker);
+    height: 100%;
+  }
+  .auth-hero img.bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    transform: scale(1.02);
+  }
+  .auth-hero .overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(160deg, rgba(122,21,24,0.88) 0%, rgba(15,23,42,0.82) 100%);
+  }
+
+  .auth-logo {
+    position: absolute;
+    top: 32px;
+    left: 44px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .auth-logo img.mc {
+    height: 39px;
+    filter: brightness(0) invert(1);
+  }
+  .auth-logo .sep {
+    width: 1px;
+    height: 30px;
+    background: rgba(255,255,255,0.25);
+  }
+  .auth-logo img.yk {
+    height: 33px;
+    filter: brightness(0) invert(1);
+    opacity: 0.75;
+  }
+
+  .auth-copy {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 52px;
+    max-width: 720px;
+  }
+  .auth-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--mc-red);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+    box-shadow: 0 10px 30px -8px rgba(217,23,27,0.65);
+  }
+  .auth-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+    animation: pulseDot 2s ease-in-out infinite;
+  }
+  @keyframes pulseDot {
+    0%,100% { box-shadow: 0 0 0 3px rgba(255,255,255,0.25); }
+    50%     { box-shadow: 0 0 0 6px rgba(255,255,255,0.05); }
+  }
+
+  .auth-copy h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.2vw, 46px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -1.3px;
+    margin-bottom: 18px;
+    max-width: 600px;
+  }
+  .auth-copy h1 .accent {
+    display: block;
+    background: linear-gradient(120deg, #fff 0%, var(--mc-red-lighter) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .auth-copy p.lead {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    max-width: 500px;
+  }
+
+  .auth-hero footer {
+    position: absolute;
+    bottom: 28px;
+    left: 52px;
+    right: 52px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  .auth-hero footer .secured {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .auth-hero footer svg { width: 12px; height: 12px; }
+
+  /* ─────────── RIGHT — form panel ─────────── */
+  .auth-panel {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 44px;
+    border-left: 1px solid var(--ink-100);
+    height: 100%;
+    overflow-y: auto;
+  }
+  @media (max-width: 540px) { .auth-panel { padding: 32px 24px; } }
+
+  .auth-panel-header { margin-bottom: 22px; }
+
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--mc-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 28px -8px rgba(217,23,27,0.45);
+  }
+  .brand-mark svg { width: 22px; height: 22px; color: #fff; }
+
+  .auth-panel h1 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--ink-900);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .auth-panel .subtitle {
+    font-size: 13.5px;
+    color: var(--ink-500);
+    line-height: 1.6;
+  }
+
+  /* Mobile-only co-brand row inside the panel */
+  .mobile-brand {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .mobile-brand img.mc { height: 39px; }
+  .mobile-brand .sep { width: 1px; height: 30px; background: var(--ink-200); }
+  .mobile-brand img.yk { height: 33px; opacity: 0.85; }
+  @media (max-width: 960px) { .mobile-brand { display: flex; } }
+
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .field-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-700);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  .field-input {
+    position: relative;
+  }
+  .field-input svg.icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--ink-300);
+    transition: color 0.25s ease;
+    pointer-events: none;
+  }
+  .field input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1.5px solid var(--ink-200);
+    border-radius: 10px;
+    padding: 11px 14px 11px 40px;
+    font-size: 14px;
+    color: var(--ink-900);
+    background: var(--ink-50);
+    outline: none;
+    font-family: inherit;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+  .field input::placeholder { color: var(--ink-300); }
+  .field input:focus {
+    background: #fff;
+    border-color: var(--mc-red);
+    box-shadow: 0 0 0 4px var(--mc-red-lightest);
+  }
+  .field-input:focus-within svg.icon { color: var(--mc-red); }
+
+  .toggle-pwd {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--ink-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+  }
+  .toggle-pwd:hover { background: var(--ink-100); color: var(--mc-red); }
+  .toggle-pwd svg { width: 16px; height: 16px; }
+
+  .row-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2px;
+  }
+  .checkbox {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--ink-500);
+    font-weight: 500;
+    user-select: none;
+  }
+  .checkbox input { display: none; }
+  .checkbox .box {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid var(--ink-200);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  .checkbox .box svg {
+    width: 12px;
+    height: 12px;
+    color: #fff;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: all 0.2s ease;
+  }
+  .checkbox input:checked + .box {
+    background: var(--mc-red);
+    border-color: var(--mc-red);
+  }
+  .checkbox input:checked + .box svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .row-options a {
+    font-size: 13px;
+    color: var(--mc-red);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .row-options a:hover { text-decoration: underline; }
+
+  .error-msg {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    background: var(--mc-red-lightest);
+    border: 1px solid var(--mc-red-lighter);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--mc-red-dark);
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .error-msg.show { display: flex; animation: shake 0.4s; }
+  .error-msg svg { width: 14px; height: 14px; flex-shrink: 0; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+
+  .btn-submit {
+    border: none;
+    border-radius: 11px;
+    padding: 13px;
+    background: var(--mc-red);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 13.5px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.25s ease;
+    box-shadow: 0 10px 28px -10px rgba(217,23,27,0.55);
+  }
+  .btn-submit:hover {
+    background: var(--mc-red-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 34px -10px rgba(217,23,27,0.65);
+  }
+  .btn-submit:active { transform: translateY(0); }
+  .btn-submit:disabled {
+    background: var(--mc-red-light);
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn-submit svg { width: 16px; height: 16px; }
+  .btn-submit .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .auth-alt {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--ink-500);
+  }
+  .auth-alt a {
+    color: var(--mc-red);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .auth-alt a:hover { text-decoration: underline; }
+
+  .auth-footer {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--ink-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--ink-300);
+  }
+
+  /* Entrance animation */
+  .auth-copy > * { animation: heroIn 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+  .auth-copy > *:nth-child(1) { animation-delay: 0.1s; }
+  .auth-copy > *:nth-child(2) { animation-delay: 0.2s; }
+  .auth-copy > *:nth-child(3) { animation-delay: 0.32s; }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .auth-panel-header,
+  .auth-form,
+  .auth-alt,
+  .auth-footer { animation: panelIn 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+  .auth-panel-header { animation-delay: 0.05s; }
+  .auth-form         { animation-delay: 0.18s; }
+  .auth-alt          { animation-delay: 0.28s; }
+  .auth-footer       { animation-delay: 0.36s; }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="auth-shell">
+
+  <!-- ═════════════ LEFT — HERO ═════════════ -->
+  <div class="auth-hero">
+    <img class="bg" src="images/may-cash/hassan-mosque.jpg" alt="Hassan II Mosque, Casablanca">
+    <div class="overlay"></div>
+
+    <div class="auth-logo">
+      <img class="mc" src="images/logos/logo-original.svg" alt="May Cash">
+      <span class="sep"></span>
+      <img class="yk" src="images/logo.webp" alt="Yunik">
+    </div>
+
+    <div class="auth-copy">
+      <span class="auth-badge"><span class="dot"></span>Private Workspace</span>
+      <h1>The May Cash<span class="accent">delivery workspace.</span></h1>
+      <p class="lead">A secure, encrypted environment by Yunik — sign in with your authorized account to access project documentation and shared resources.</p>
+    </div>
+
+    <footer>
+      <span class="secured">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        End-to-end encrypted · TLS 1.3
+      </span>
+      <span>© 2026 Yunik × May Cash</span>
+    </footer>
+  </div>
+
+  <!-- ═════════════ RIGHT — FORM ═════════════ -->
+  <div class="auth-panel">
+
+    <div class="mobile-brand">
+      <img class="mc" src="images/logos/logo-original.svg" alt="May Cash">
+      <span class="sep"></span>
+      <img class="yk" src="images/logo.webp" alt="Yunik">
+    </div>
+
+    <div class="auth-panel-header">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h1>Sign in</h1>
+      <p class="subtitle">Enter your authorized credentials to access the May Cash delivery workspace.</p>
+    </div>
+
+    <form class="auth-form" id="loginForm" autocomplete="off" novalidate>
+
+      <div class="field">
+        <label class="field-label" for="email">Email</label>
+        <div class="field-input">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <input type="email" id="email" name="email" placeholder="you@maycash.ma" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="password">Password</label>
+        <div class="field-input">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <input type="password" id="password" name="password" placeholder="••••••••" required>
+          <button type="button" class="toggle-pwd" id="togglePwd" aria-label="Show password">
+            <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="row-options">
+        <label class="checkbox">
+          <input type="checkbox" id="remember">
+          <span class="box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+          </span>
+          Remember me
+        </label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <div class="error-msg" id="errMsg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="errText">Invalid credentials. Please try again.</span>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span id="btnLabel">Sign in securely</span>
+        <svg id="btnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+      </button>
+    </form>
+
+    <div class="auth-alt">
+      <span>Need access?</span>
+      <a href="mailto:contact@yunik.io">Contact Yunik</a>
+    </div>
+
+    <div class="auth-footer">
+      <span>© 2026 Yunik × May Cash</span>
+      <span>v1.0.0</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Toggle password visibility ──
+  const pwd = document.getElementById('password');
+  document.getElementById('togglePwd').addEventListener('click', () => {
+    const isPwd = pwd.type === 'password';
+    pwd.type = isPwd ? 'text' : 'password';
+    document.getElementById('eyeIcon').innerHTML = isPwd
+      ? '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>'
+      : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  });
+
+  // ═══════════════════════════════════════════════════════════════
+  // AUTH — authorized users (plain credential check)
+  // To change a password just replace the `password` value below.
+  // ═══════════════════════════════════════════════════════════════
+  const CLIENT_PASSWORD = 'RawajCash2026!';  // shared by the 3 Maymouna users
+  const ADMIN_PASSWORD  = 'Yunik2026!';      // Yunik admin
+
+  const USERS = [
+    { email: 'salaheddine.lakhoula@maymounafinance.ma', name: 'Salah Eddine Lakhoula', initials: 'SL', password: CLIENT_PASSWORD, role: 'client' },
+    { email: 'laila.elbettani@maymounafinance.ma',      name: 'Laila El Bettani',      initials: 'LB', password: CLIENT_PASSWORD, role: 'client' },
+    { email: 'ahmed.chafak@maymounafinance.ma',         name: 'Ahmed Chafak',          initials: 'AC', password: CLIENT_PASSWORD, role: 'client' },
+    { email: 'yassine@yunik.io',                         name: 'Yassine Atlagh',        initials: 'YA', password: ADMIN_PASSWORD,  role: 'admin'  }
+  ];
+  const SESSION_KEY = 'rawaj-session';
+
+  console.log('[Auth] Login script loaded — ' + USERS.length + ' authorized users.');
+
+  // (Existing-session auto-redirect intentionally disabled — always show login form
+  // so the user can sign in fresh. Re-enable if you want auto-resume.)
+
+  const errBox = document.getElementById('errMsg');
+  const errTxt = document.getElementById('errText');
+  const btn    = document.getElementById('submitBtn');
+  const lbl    = document.getElementById('btnLabel');
+  const icn    = document.getElementById('btnIcon');
+
+  function showError(msg) {
+    errTxt.textContent = msg;
+    errBox.classList.remove('show');
+    void errBox.offsetWidth; // restart shake animation
+    errBox.classList.add('show');
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    errBox.classList.remove('show');
+
+    const email    = document.getElementById('email').value.trim().toLowerCase();
+    const password = pwd.value;
+    const remember = document.getElementById('remember').checked;
+
+    console.log('[Auth] Submit attempt — email:', email);
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('Please enter a valid email address.');
+      return;
+    }
+    if (!password) {
+      showError('Please enter your password.');
+      return;
+    }
+
+    // Find authorized user
+    const user = USERS.find(function (u) { return u.email.toLowerCase() === email; });
+    if (!user) {
+      console.warn('[Auth] Email not in authorized list');
+      showError('This email is not authorized to access the workspace.');
+      return;
+    }
+
+    // Compare passwords directly
+    if (password !== user.password) {
+      console.warn('[Auth] Wrong password (length: ' + password.length + ' vs expected: ' + user.password.length + ')');
+      showError('Incorrect password. Please try again.');
+      return;
+    }
+
+    // ✅ Authenticated
+    console.log('[Auth] ✓ Login OK for', user.name);
+    btn.disabled = true;
+    icn.style.display = 'none';
+    lbl.textContent = 'Signed in — redirecting…';
+
+    const session = {
+      email: user.email,
+      name: user.name,
+      initials: user.initials,
+      role: user.role,
+      ts: Date.now()
+    };
+    try {
+      const store = remember ? localStorage : sessionStorage;
+      store.setItem(SESSION_KEY, JSON.stringify(session));
+      (remember ? sessionStorage : localStorage).removeItem(SESSION_KEY);
+    } catch (err) {
+      console.error('[Auth] Could not save session:', err);
+    }
+
+    setTimeout(function () {
+      window.location.href = 'may-cash-workspace.html';
+    }, 400);
+  });
+
+</script>
+</body>
+</html>
