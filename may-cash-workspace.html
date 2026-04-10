@@ -1535,26 +1535,37 @@
   });
 
   // ═══════════════════════════════════════════════════════
-  // COMMENT SYSTEM — shared across all users via JSONBlob
-  // Storage URL is hardcoded; the bin acts as the shared
-  // database. Polled every 8s for near-real-time sync.
+  // COMMENT SYSTEM — shared across all users via JSONBin.io
+  // Bin is hardcoded; access key is scoped read+write only on
+  // this single bin. Polled every 8s for near-real-time sync.
   // ═══════════════════════════════════════════════════════
-  const COMMENTS_URL = 'https://jsonblob.com/api/jsonBlob/019d79a3-5d71-7acc-a3e6-82fb411a9996';
-  const POLL_INTERVAL = 8000; // ms
+  const JSONBIN_BIN_ID     = '69d984c336566621a89ddc23';
+  const JSONBIN_ACCESS_KEY = '$2a$10$.kmCVt6e07JJKOsfOx7qoewEmrYLjQTJuMwslUzXaCDJvKBZ3OZL2';
+  const JSONBIN_URL        = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN_ID;
+  const POLL_INTERVAL      = 8000; // ms
   let allComments = {};
   let isSaving = false;
   let lastFetchedSnapshot = '{}';
 
-  // Initial load — fetch from server
+  // Fetch comments from server
   async function loadCommentsFromServer() {
     try {
-      const res = await fetch(COMMENTS_URL, { cache: 'no-store' });
+      const res = await fetch(JSONBIN_URL + '/latest', {
+        cache: 'no-store',
+        headers: {
+          'X-Access-Key': JSONBIN_ACCESS_KEY,
+          'X-Bin-Meta':   'false'
+        }
+      });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
-      const snap = JSON.stringify(data.comments || {});
+      // JSONBin wraps the data in `record`
+      const record = data.record || data;
+      const comments = record.comments || {};
+      const snap = JSON.stringify(comments);
       if (snap === lastFetchedSnapshot) return false; // no change
       lastFetchedSnapshot = snap;
-      allComments = data.comments || {};
+      allComments = comments;
       return true;
     } catch (e) {
       console.warn('[Comments] fetch failed:', e);
@@ -1567,14 +1578,17 @@
     if (isSaving) return;
     isSaving = true;
     try {
-      const body = { comments: allComments };
-      const res = await fetch(COMMENTS_URL, {
+      const res = await fetch(JSONBIN_URL, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+        headers: {
+          'Content-Type':  'application/json',
+          'X-Access-Key':  JSONBIN_ACCESS_KEY
+        },
+        body: JSON.stringify({ comments: allComments })
       });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       lastFetchedSnapshot = JSON.stringify(allComments);
+      console.log('[Comments] saved ✓');
     } catch (e) {
       console.error('[Comments] save failed:', e);
       showToast('Failed to save — check connection', true);
