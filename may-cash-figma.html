@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>May Cash × Yunik — Figma Prototype Coming Soon</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --mc-red:         #D9171B;
+    --mc-red-lightest:#FDF0F0;
+    --ink-900: #0f172a;
+    --ink-500: #64748b;
+    --ink-300: #cbd5e1;
+    --ink-100: #f1f5f9;
+
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--font-body);
+    color: #ffffff;
+    background: #7A1518;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  /* Mosque background + gradient overlay — same as the login hero */
+  .bg-image {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    transform: scale(1.02);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(122,21,24,0.88) 0%, rgba(15,23,42,0.82) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .stage {
+    position: relative;
+    z-index: 2;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  /* Top brand bar */
+  .topbar {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    animation: fadeDown 0.7s var(--ease) both;
+  }
+  @media (max-width: 720px) { .topbar { padding: 0 24px; top: 24px; } }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand img.mc {
+    height: 28px;
+    filter: brightness(0) invert(1);
+  }
+  .brand .sep { width: 1px; height: 22px; background: rgba(255,255,255,0.25); }
+  .brand img.yk {
+    height: 24px;
+    filter: brightness(0) invert(1);
+    opacity: 0.75;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.25s var(--ease);
+  }
+  .back:hover {
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.08);
+  }
+  .back svg { width: 13px; height: 13px; }
+
+  /* Center content */
+  .center {
+    max-width: 520px;
+    animation: fadeUp 0.9s var(--ease) both;
+    animation-delay: 0.1s;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Loading icon */
+  .loader {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #0d0e11;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+      0 30px 80px -20px rgba(217,23,27,0.55),
+      0 0 0 1px rgba(217,23,27,0.25),
+      inset 0 0 60px rgba(217,23,27,0.12);
+    animation: breathe 3s ease-in-out infinite;
+    position: relative;
+  }
+  .loader::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 1.5px dashed rgba(255,255,255,0.45);
+    border-radius: 50%;
+    animation: ringRotate 18s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes ringRotate { to { transform: rotate(360deg); } }
+  @keyframes breathe {
+    0%,100% { transform: scale(1); }
+    50%     { transform: scale(1.02); }
+  }
+  .loader img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Small status pill */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(217,23,27,0.18);
+    border: 1px solid rgba(217,23,27,0.45);
+    color: var(--mc-red-lightest);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .status .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--mc-red);
+    box-shadow: 0 0 0 3px rgba(217,23,27,0.3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 3px rgba(217,23,27,0.3); }
+    50%     { box-shadow: 0 0 0 7px rgba(217,23,27,0.08); }
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4.5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 14px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+  }
+  h1 .accent {
+    background: linear-gradient(120deg, #fff 0%, #F5A3A5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    max-width: 460px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  }
+
+  /* Countdown */
+  .countdown-label {
+    margin-top: 30px;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .countdown {
+    display: inline-flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  .cd-cell {
+    min-width: 62px;
+    padding: 12px 6px 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px -8px rgba(0,0,0,0.4);
+    position: relative;
+  }
+  .cd-cell::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 8px; right: 8px;
+    height: 2px;
+    background: var(--mc-red);
+    border-radius: 2px;
+    opacity: 0.9;
+    box-shadow: 0 0 12px rgba(217,23,27,0.6);
+  }
+  .cd-num {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-lbl {
+    display: block;
+    margin-top: 6px;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .countdown.done .cd-num { color: #F5A3A5; }
+  @media (max-width: 420px) {
+    .cd-cell { min-width: 56px; padding: 10px 4px 8px; }
+    .cd-num { font-size: 22px; }
+  }
+
+  /* Footer */
+  .foot {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<img class="bg-image" src="images/may-cash/hassan-mosque.jpg" alt="">
+<div class="bg-overlay"></div>
+
+<div class="stage">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="brand">
+      <img class="mc" src="images/logos/logo-original.svg" alt="May Cash">
+      <span class="sep"></span>
+      <img class="yk" src="images/logo.webp" alt="Yunik">
+    </div>
+    <a class="back" href="may-cash-workspace.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back
+    </a>
+  </div>
+
+  <!-- Center content -->
+  <div class="center">
+
+    <div class="loader">
+      <img src="images/may-cash/icon.gif" alt="Loading">
+    </div>
+
+    <span class="status"><span class="dot"></span>Phase 02 · In Progress</span>
+
+    <h1>Figma prototype<br><span class="accent">coming soon.</span></h1>
+
+    <p>The May Cash design prototype is being crafted in Figma by the Yunik team. Home page, key screens and components will be unveiled here shortly.</p>
+
+    <div class="countdown-label">Reveal in</div>
+    <div class="countdown" id="countdown">
+      <div class="cd-cell"><div class="cd-num" id="cd-d">00</div><span class="cd-lbl">Days</span></div>
+      <div class="cd-cell"><div class="cd-num" id="cd-h">00</div><span class="cd-lbl">Hours</span></div>
+      <div class="cd-cell"><div class="cd-num" id="cd-m">00</div><span class="cd-lbl">Min</span></div>
+      <div class="cd-cell"><div class="cd-num" id="cd-s">00</div><span class="cd-lbl">Sec</span></div>
+    </div>
+  </div>
+
+  <div class="foot">© 2026 Yunik × May Cash</div>
+</div>
+
+<script>
+  // ─────────── Countdown to next Wednesday 12:00 GMT+1 ───────────
+  // Target is always 12:00 GMT+1 (= 11:00 UTC), so every viewer
+  // counts down to the same absolute moment regardless of their
+  // local timezone. Computed once at load.
+  function nextWednesday() {
+    const now = new Date();
+    // Build today at 11:00 UTC (= 12:00 GMT+1)
+    const target = new Date(Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate(),
+      11, 0, 0, 0
+    ));
+    const day = target.getUTCDay(); // 0 Sun … 3 Wed … 6 Sat
+    let add = (3 - day + 7) % 7;
+    // If today (UTC) is Wednesday and 11:00 UTC has already passed,
+    // jump to next Wednesday a week away.
+    if (add === 0 && now.getTime() >= target.getTime()) add = 7;
+    target.setUTCDate(target.getUTCDate() + add);
+    return target;
+  }
+
+  const targetDate = nextWednesday();
+  const el = {
+    wrap: document.getElementById('countdown'),
+    d: document.getElementById('cd-d'),
+    h: document.getElementById('cd-h'),
+    m: document.getElementById('cd-m'),
+    s: document.getElementById('cd-s'),
+    label: document.querySelector('.countdown-label')
+  };
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function tick() {
+    const diff = targetDate.getTime() - Date.now();
+    if (diff <= 0) {
+      el.d.textContent = '00';
+      el.h.textContent = '00';
+      el.m.textContent = '00';
+      el.s.textContent = '00';
+      el.wrap.classList.add('done');
+      el.label.textContent = 'Reveal time';
+      return;
+    }
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000) / 60000);
+    const secs  = Math.floor((diff % 60000) / 1000);
+    el.d.textContent = pad(days);
+    el.h.textContent = pad(hours);
+    el.m.textContent = pad(mins);
+    el.s.textContent = pad(secs);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
