@@ -87,7 +87,7 @@
         img { max-width: 100%; height: auto; display: block; }
 
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: 100px 0; }
+        .section-padding { padding: 64px 0; }
         
         /* Buttons */
         .btn {
@@ -493,11 +493,29 @@
         .service-link { font-weight: 700; color: var(--mc-red); display: flex; align-items: center; gap: 8px; }
 
         /* Why Us Section */
-        .why-row { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 100px; }
+        .why-row { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 56px; }
+        .why-row:last-child { margin-bottom: 0; }
         .why-row.reverse { direction: rtl; }
         .why-row.reverse .why-content { direction: ltr; }
         .why-img { border-radius: var(--radius-2xl); overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-        .why-content h2 { font-size: 36px; margin-bottom: 24px; }
+        .why-content h2,
+        .section-padding > .container > div > h2,
+        #blog h2,
+        #locator h2 {
+            font-size: 38px;
+            font-weight: 800;
+            font-family: var(--font-display);
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: var(--gray-900);
+        }
+        @media (max-width: 1024px) {
+            .why-content h2,
+            .section-padding > .container > div > h2,
+            #blog h2,
+            #locator h2 { font-size: 28px; }
+        }
         .why-icon-title { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--mc-red); font-weight: 700; font-family: var(--font-display); }
 
         /* Agency Locator */
@@ -673,6 +691,202 @@
         .footer-bottom { border-top: 1px solid var(--gray-800); padding-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: var(--gray-500); }
         .legal-links { display: flex; gap: 24px; }
 
+        /* Quick Categories Section */
+        .quick-cats {
+            padding: 80px 24px 60px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .quick-cats-title {
+            text-align: center;
+            font-size: 38px;
+            font-weight: 800;
+            font-family: var(--font-display);
+            color: var(--gray-900);
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+        .quick-cats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .quick-cat {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: white;
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 20px 24px;
+            text-decoration: none;
+            color: var(--gray-900);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s;
+        }
+        .quick-cat:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(217, 23, 27, 0.15), 0 4px 10px rgba(0,0,0,0.06);
+            border-color: #F5A3A5;
+        }
+        .quick-cat-icon {
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #FDF0F0 0%, #FFD7D8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--mc-red);
+            flex-shrink: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .quick-cat-icon svg { width: 28px; height: 28px; }
+        .quick-cat:hover .quick-cat-icon {
+            background: linear-gradient(135deg, var(--mc-red) 0%, var(--mc-red-dark) 100%);
+            color: white;
+        }
+        .quick-cat-label {
+            flex: 1;
+            font-size: 17px;
+            font-weight: 700;
+            font-family: var(--font-display);
+            letter-spacing: -0.2px;
+        }
+        .quick-cat-arrow {
+            color: var(--mc-red);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s var(--ease);
+        }
+        .quick-cat:hover .quick-cat-arrow { transform: translateX(4px); }
+        html[dir="rtl"] .quick-cat-arrow { transform: scaleX(-1); }
+        html[dir="rtl"] .quick-cat:hover .quick-cat-arrow { transform: translateX(-4px) scaleX(-1); }
+        html[dir="rtl"] .quick-cat-label { font-family: var(--font-arabic); }
+
+        @media (max-width: 1024px) {
+            .quick-cats-grid { grid-template-columns: repeat(2, 1fr); }
+            .quick-cats-title { font-size: 28px; }
+        }
+        @media (max-width: 640px) {
+            .quick-cats-grid { grid-template-columns: 1fr; }
+            .quick-cats { padding: 60px 20px 40px; }
+            .quick-cat { padding: 16px 18px; gap: 14px; }
+            .quick-cat-icon { width: 48px; height: 48px; }
+            .quick-cat-icon svg { width: 24px; height: 24px; }
+            .quick-cat-label { font-size: 15px; }
+        }
+
+        /* Assistance Section — 3 cards (support entry points) */
+        .assistance {
+            padding: 40px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .assistance-title {
+            text-align: center;
+            font-size: 38px;
+            font-weight: 800;
+            font-family: var(--font-display);
+            color: var(--gray-900);
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+        .assistance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 1024px) {
+            .assistance-grid { grid-template-columns: 1fr; }
+            .assistance-title { font-size: 28px; }
+            .assistance { padding: 40px 20px 60px; }
+        }
+
+        /* App Promo Banner */
+        .app-promo {
+            max-width: 1280px;
+            margin: 20px auto 40px;
+            padding: 0 24px;
+        }
+        .app-promo-inner {
+            background: linear-gradient(135deg, #FDF0F0 0%, #FFE5E6 50%, #F5A3A5 100%);
+            border-radius: 24px;
+            padding: 40px 48px 0;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 40px;
+            align-items: end;
+            position: relative;
+            overflow: hidden;
+            min-height: 260px;
+        }
+        .app-promo-logo { padding-bottom: 40px; }
+        .app-promo-content { padding-bottom: 40px; }
+        .app-promo-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+        .app-promo-logo-tile {
+            width: 120px; height: 120px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, var(--mc-red) 0%, var(--mc-red-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(217, 23, 27, 0.3);
+        }
+        .app-promo-logo-tile img { width: 68px; height: 68px; object-fit: contain; filter: brightness(0) invert(1); }
+        .app-promo-logo-name {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--gray-900);
+            letter-spacing: -0.3px;
+        }
+        .app-promo-content h2 {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--gray-900);
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+        .app-promo-content p {
+            font-size: 16px;
+            color: var(--gray-700);
+            margin-bottom: 20px;
+            max-width: 520px;
+        }
+        .app-promo-badges { display: flex; gap: 12px; flex-wrap: wrap; }
+        .app-promo-badges .app-badge { height: 48px; width: auto; transition: transform 0.2s; }
+        .app-promo-badges a:hover .app-badge { transform: translateY(-2px); }
+        .app-promo-visual {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            align-self: end;
+        }
+        .app-promo-visual img {
+            max-width: 340px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 25px 40px rgba(0,0,0,0.15));
+        }
+        @media (max-width: 1024px) {
+            .app-promo-inner { grid-template-columns: 1fr; text-align: center; padding: 32px 24px; gap: 24px; }
+            .app-promo-logo { flex-direction: row; justify-content: center; }
+            .app-promo-content p { margin-left: auto; margin-right: auto; }
+            .app-promo-badges { justify-content: center; }
+            .app-promo-content h2 { font-size: 24px; }
+            .app-promo-visual img { max-width: 260px; }
+        }
+
         /* Hero Ribbon — "100% Moroccan" badge attached inside hero's right edge */
         .ribbon {
             position: absolute;
@@ -816,19 +1030,115 @@
         .reveal[data-delay="500"] { transition-delay: 0.5s; }
         .reveal[data-delay="600"] { transition-delay: 0.6s; }
 
-        /* Mobile Adjustments */
+        /* Mobile Adjustments — Tablet (≤1024px) */
         @media (max-width: 1024px) {
             .hero-grid, .why-row, .locator-container, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .hero-content h1 { font-size: 40px; }
-            .hero { min-height: auto; padding-bottom: 100px; }
+            .hero { min-height: auto; padding-bottom: 40px; margin: 16px 16px 0; border-radius: 20px; }
+            .hero-slides { min-height: auto; }
+            .hero-carousel { padding: 0 20px; }
+            nav { margin: 12px 16px 0; height: 68px; }
+            nav .container { padding: 0 18px; }
+            .logo img { height: 34px; }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .lang-toggle button { padding: 6px 10px; font-size: 11px; }
+            .phone-mockup { max-width: 360px; margin: 0 auto; }
+            .hero-visual { padding: 20px 0 0; }
+            .ribbon { display: none; }
+
             .stats-bar { position: static; transform: none; margin: 40px auto 0; grid-template-columns: 1fr; gap: 20px; }
             .stat-item { border-right: none; border-bottom: 1px solid var(--gray-100); padding-bottom: 20px; }
             .stat-item:last-child { border-bottom: none; }
-            .nav-links { display: none; }
-            .hamburger { display: block; }
             .why-row.reverse { direction: ltr; }
+            .why-img img { max-height: 360px; object-fit: cover; width: 100%; border-radius: 20px; }
             .blog-grid { grid-template-columns: 1fr; }
             .franchise-bullets { grid-template-columns: 1fr; }
+            .franchise-content h2 { white-space: normal; font-size: 28px; }
+            .franchise-section { padding: 40px 28px; }
+            .locator-map { height: 320px; }
+            .locator-content { padding: 24px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; margin-bottom: 50px; }
+            .footer-contact p { flex-wrap: wrap; }
+            .services-grid { grid-template-columns: 1fr; gap: 20px; }
+            .carousel-dots { padding-bottom: 24px; margin-top: 24px; }
+            footer { padding: 60px 0 30px; }
+            .container { padding: 0 20px; }
+        }
+
+        /* Mobile Adjustments — Phone (≤640px) */
+        @media (max-width: 640px) {
+            .hero { padding-top: 30px; padding-bottom: 30px; margin: 10px 10px 0; border-radius: 18px; }
+            .hero-carousel { padding: 0 14px; }
+            .hero-content h1 { font-size: 28px; line-height: 1.2; }
+            .hero-content p { font-size: 15px; margin-bottom: 24px; }
+            .hero-badges { gap: 10px; flex-wrap: wrap; }
+            .hero-badges .app-badge { height: 40px; }
+            .hero-actions { display: flex; flex-direction: column; gap: 10px; }
+            .hero-actions .btn { margin-left: 0 !important; width: 100%; }
+            .phone-mockup { max-width: 260px; }
+
+            nav { margin: 8px 10px 0; height: 58px; border-radius: 14px; }
+            .logo img { height: 28px; }
+            nav .container { padding: 0 12px; }
+
+            .quick-cats-title, .assistance-title { font-size: 24px; margin-bottom: 24px; }
+            .quick-cat-label { font-size: 14px; }
+            .quick-cat-icon { width: 44px; height: 44px; border-radius: 12px; }
+            .quick-cat-icon svg { width: 22px; height: 22px; }
+            .quick-cat { padding: 14px 16px; gap: 12px; }
+
+            .why-content h2,
+            #blog h2, #locator h2,
+            .section-padding > .container > div > h2 { font-size: 24px; line-height: 1.2; }
+            .why-content p, .section-padding p { font-size: 14px; }
+            .why-icon-title { font-size: 13px; }
+            .section-padding { padding: 40px 0; }
+
+            .franchise-section { padding: 32px 22px; border-radius: 20px; }
+            .franchise-content h2 { font-size: 22px; }
+            .franchise-content p { font-size: 14px; }
+            .franchise-visual { margin: 0 !important; }
+            .franchise-visual img { max-width: 240px; }
+
+            .app-promo { padding: 0 14px; margin: 16px auto 32px; }
+            .app-promo-inner { grid-template-columns: 1fr; padding: 24px 20px 0; gap: 16px; text-align: center; }
+            .app-promo-logo { padding-bottom: 0; flex-direction: row; justify-content: center; }
+            .app-promo-logo-tile { width: 72px; height: 72px; border-radius: 18px; }
+            .app-promo-logo-tile img { width: 40px; height: 40px; }
+            .app-promo-logo-name { font-size: 16px; }
+            .app-promo-content { padding-bottom: 0; }
+            .app-promo-content h2 { font-size: 20px; }
+            .app-promo-content p { font-size: 13px; margin-left: auto; margin-right: auto; }
+            .app-promo-badges { justify-content: center; }
+            .app-promo-badges .app-badge { height: 40px; }
+            .app-promo-visual img { max-width: 200px; }
+
+            .locator-map { height: 260px; }
+            .locator-content { padding: 20px; }
+            .search-mock { font-size: 13px; padding: 10px 14px; }
+            .agency-card h5 { font-size: 14px; }
+            .agency-card p { font-size: 12px; }
+
+            .blog-body h4 { font-size: 16px; }
+            .blog-body p { font-size: 13px; }
+
+            .partner-logo { font-size: 13px; height: 38px; gap: 8px; }
+            .partner-logo img { height: 28px; width: 28px; }
+            .marquee-track { gap: 40px; }
+            .trust-banner { padding: 24px 0; }
+
+            footer { padding: 40px 0 24px; }
+            .footer-col h4 { font-size: 15px; margin-bottom: 14px; }
+            .footer-col ul li { margin-bottom: 8px; }
+            .footer-brand p { font-size: 13px; }
+            .legal-links { flex-wrap: wrap; gap: 12px; font-size: 12px; }
+            .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+            .footer-bottom p { font-size: 12px; }
+
+            .chat-fab { bottom: 14px; right: 14px; padding: 12px; }
+            .chat-fab-label { display: none; }
+            .chat-panel { right: 8px; left: 8px; bottom: 8px; width: calc(100vw - 16px); max-width: calc(100vw - 16px); height: calc(100vh - 16px); }
         }
 
         /* Mobile Menu */
@@ -1144,25 +1454,10 @@
                             <p data-i18n="hero.s1.desc">Envoyez et recevez de l'argent instantanément avec notre application fiable et sécurisée. Profitez de la proximité de notre réseau national.</p>
                             <div class="hero-badges">
                                 <a href="#" class="app-badge-link" aria-label="Télécharger sur Google Play">
-                                    <svg class="app-badge" width="160" height="48" viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="160" height="48" rx="8" fill="black"/>
-                                        <g transform="translate(12, 10)">
-                                            <path d="M0.5 1.5 L0.5 26.5 L13 14 Z" fill="#EA4335"/>
-                                            <path d="M0.5 1.5 L13 14 L16.5 10.5 Z" fill="#FBBC04"/>
-                                            <path d="M0.5 26.5 L13 14 L16.5 17.5 Z" fill="#34A853"/>
-                                            <path d="M13 14 L16.5 10.5 L22 14 L16.5 17.5 Z" fill="#4285F4"/>
-                                        </g>
-                                        <text x="44" y="20" fill="white" font-family="Arial, sans-serif" font-size="9" letter-spacing="0.5">GET IT ON</text>
-                                        <text x="44" y="36" fill="white" font-family="Arial, sans-serif" font-weight="700" font-size="16" letter-spacing="0.2">Google Play</text>
-                                    </svg>
+                                    <img class="app-badge" src="images/googleplay.svg" alt="Google Play">
                                 </a>
                                 <a href="#" class="app-badge-link" aria-label="Télécharger sur l'App Store">
-                                    <svg class="app-badge" width="160" height="48" viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="160" height="48" rx="8" fill="black"/>
-                                        <path d="M28.5 25.4c0-2.6 2.1-3.9 2.2-4-1.2-1.7-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9s-2-.9-3.4-.9c-1.8 0-3.4 1-4.3 2.6-1.8 3.2-.5 7.9 1.3 10.4.9 1.2 2 2.6 3.3 2.6 1.3-.1 1.8-.9 3.4-.9 1.6 0 2.1.9 3.4.8 1.4 0 2.3-1.3 3.2-2.5 1-1.4 1.4-2.8 1.5-2.9-.1 0-2.9-1.1-3-4.1zm-2.7-7.5c.7-.9 1.2-2.1 1.1-3.4-1.1 0-2.4.7-3.1 1.6-.6.8-1.2 2-1 3.3 1.2.1 2.4-.6 3-1.5z" fill="white"/>
-                                        <text x="44" y="20" fill="white" font-family="Arial, sans-serif" font-size="9">Download on the</text>
-                                        <text x="44" y="36" fill="white" font-family="Arial, sans-serif" font-weight="700" font-size="16" letter-spacing="0.2">App Store</text>
-                                    </svg>
+                                    <img class="app-badge" src="images/appstore.svg" alt="App Store">
                                 </a>
                             </div>
                         </div>
@@ -1202,57 +1497,57 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="section-padding" id="services">
-        <div class="container">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 60px;">
-                <h2 class="reveal" data-i18n="services.title">Nos Services</h2>
-                <p class="reveal" style="color: var(--gray-500);" data-i18n="services.subtitle">Des solutions financières adaptées à votre quotidien pour simplifier vos transactions.</p>
-            </div>
-
-            <div class="services-grid">
-                <!-- Card 1 -->
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-                    </div>
-                    <h3 data-i18n="services.c1.title">Transfert d'argent</h3>
-                    <p data-i18n="services.c1.desc">Envoyez et recevez de l'argent partout au Maroc et à l'international. Service rapide, fiable et disponible dans toutes nos agences.</p>
-                    <a href="#" class="service-link" data-i18n="services.link">En savoir plus &rarr;</a>
-                </div>
-                <!-- Card 2 -->
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
-                    </div>
-                    <h3 data-i18n="services.c2.title">Paiement de factures</h3>
-                    <p data-i18n="services.c2.desc">Réglez vos factures d'eau, d'électricité, de télécoms et vos impôts en quelques minutes dans l'agence la plus proche.</p>
-                    <a href="#" class="service-link" data-i18n="services.link">En savoir plus &rarr;</a>
-                </div>
-                <!-- Card 3 -->
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-                    </div>
-                    <h3 data-i18n="services.c3.title">Wallet Madmoun</h3>
-                    <p data-i18n="services.c3.desc">Votre compte de paiement mobile pour gérer votre argent en toute simplicité. Rechargez, payez et transférez depuis votre smartphone.</p>
-                    <a href="#" class="service-link" data-i18n="services.link">En savoir plus &rarr;</a>
-                </div>
-                <!-- Card 4 -->
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
-                    </div>
-                    <h3 data-i18n="services.c4.title">Autres services</h3>
-                    <p data-i18n="services.c4.desc">Recharge mobile, paiements gouvernementaux et services aux entreprises. Nous élargissons constamment notre offre.</p>
-                    <a href="#" class="service-link" data-i18n="services.link">En savoir plus &rarr;</a>
-                </div>
-            </div>
+    <!-- Quick Categories -->
+    <section class="quick-cats" id="services" data-stagger>
+        <h2 class="quick-cats-title" data-i18n="quick.title">Que recherchez-vous&nbsp;?</h2>
+        <div class="quick-cats-grid">
+            <a href="#services" class="quick-cat">
+                <span class="quick-cat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                </span>
+                <span class="quick-cat-label" data-i18n="quick.transfer">Transfert d'argent</span>
+                <span class="quick-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            </a>
+            <a href="#services" class="quick-cat">
+                <span class="quick-cat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg>
+                </span>
+                <span class="quick-cat-label" data-i18n="quick.topup">Recharge mobile</span>
+                <span class="quick-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            </a>
+            <a href="#services" class="quick-cat">
+                <span class="quick-cat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+                </span>
+                <span class="quick-cat-label" data-i18n="quick.bills">Paiement factures</span>
+                <span class="quick-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            </a>
+            <a href="#services" class="quick-cat">
+                <span class="quick-cat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+                </span>
+                <span class="quick-cat-label" data-i18n="quick.wallet">Wallet Madmoun</span>
+                <span class="quick-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            </a>
+            <a href="#services" class="quick-cat">
+                <span class="quick-cat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </span>
+                <span class="quick-cat-label" data-i18n="quick.exchange">Change de devises</span>
+                <span class="quick-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            </a>
+            <a href="#locator" class="quick-cat">
+                <span class="quick-cat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </span>
+                <span class="quick-cat-label" data-i18n="quick.agency">Trouver une agence</span>
+                <span class="quick-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            </a>
         </div>
     </section>
 
     <!-- Why Us -->
-    <section class="section-padding" id="why" style="background: var(--gray-50);">
+    <section class="section-padding" id="why">
         <div class="container">
             <div class="why-row">
                 <div class="why-img reveal" data-reveal="left">
@@ -1269,63 +1564,37 @@
             </div>
 
             <div class="why-row reverse">
-                <div class="why-img reveal">
+                <div class="why-img reveal" data-reveal="right">
                     <img src="images/img2.jpg" alt="Sécurité des transactions May Cash">
                 </div>
-                <div class="why-content reveal">
+                <div class="why-content reveal" data-reveal="left" data-delay="100">
                     <div class="why-icon-title">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        FIABILITÉ
+                        <span data-i18n="why.2.tag">FIABILITÉ</span>
                     </div>
                     <h2 data-i18n="why.2.title">La sécurité de vos transactions garantie</h2>
                     <p data-i18n="why.2.desc">May Cash est une filiale de Maymouna Services Financiers, opérateur agréé par Bank Al-Maghrib. Vos transactions sont protégées par les normes de sécurité les plus strictes du secteur financier.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Agency Locator -->
-    <section class="section-padding" id="locator">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 50px;">
-                <h2 class="reveal" data-i18n="locator.title">Trouvez l'agence la plus proche</h2>
-                <p class="reveal" data-i18n="locator.subtitle">Plus de 500 agences à votre service à travers tout le Maroc</p>
-            </div>
-            
-            <div class="locator-container reveal">
-                <div class="locator-map">
-                    <div id="morocco-map"></div>
+            <div class="why-row">
+                <div class="why-img reveal" data-reveal="left">
+                    <img src="images/img42344.jpg" alt="Transferts instantanés May Cash">
                 </div>
-                <div class="locator-content">
-                    <div class="search-mock">
-                        <span data-i18n="locator.search">Rechercher une ville...</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <div class="why-content reveal" data-reveal="right" data-delay="100">
+                    <div class="why-icon-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        <span data-i18n="why.3.tag">RAPIDITÉ</span>
                     </div>
-                    <div class="agency-list">
-                        <div class="agency-card">
-                            <h5>Rawaj Cash — Casablanca Maarif</h5>
-                            <p>123 Bd Zerktouni, Casablanca</p>
-                            <p><strong>Lun-Sam:</strong> 8h-20h</p>
-                        </div>
-                        <div class="agency-card">
-                            <h5>Rawaj Cash — Rabat Agdal</h5>
-                            <p>45 Av. Fal Ould Oumeir, Rabat</p>
-                            <p><strong>Lun-Sam:</strong> 8h-20h</p>
-                        </div>
-                        <div class="agency-card">
-                            <h5>Rawaj Cash — Marrakech Guéliz</h5>
-                            <p>78 Av. Mohammed V, Marrakech</p>
-                            <p><strong>Lun-Sam:</strong> 9h-19h</p>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-primary" style="margin-top: 30px; width: 100%;" data-i18n="locator.cta">Voir toutes les agences</a>
+                    <h2 data-i18n="why.3.title">Envois instantanés, 24h/24</h2>
+                    <p data-i18n="why.3.desc">Vos transferts sont effectués en temps réel, à toute heure du jour et de la nuit. Plus besoin d'attendre les horaires d'ouverture — envoyez, recevez et payez quand vous voulez, depuis votre téléphone ou dans l'agence la plus proche.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Franchise CTA -->
-    <section class="container" style="margin-bottom: 100px;" id="franchise">
+    <section class="container" style="margin-top: 40px; margin-bottom: 40px;" id="franchise">
         <div class="franchise-section reveal">
             <div class="hero-pattern"></div>
             <div class="franchise-inner">
@@ -1362,15 +1631,66 @@
         </div>
     </section>
 
+    <!-- Assistance -->
+    <section class="assistance" data-stagger>
+        <h2 class="assistance-title" data-i18n="assist.title">Assistance</h2>
+        <div class="assistance-grid">
+            <a href="#" class="quick-cat" onclick="openChat(); return false;">
+                <span class="quick-cat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </span>
+                <span class="quick-cat-label" data-i18n="assist.ask">Poser une question</span>
+                <span class="quick-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            </a>
+            <a href="#locator" class="quick-cat">
+                <span class="quick-cat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </span>
+                <span class="quick-cat-label" data-i18n="assist.find">Trouver une agence</span>
+                <span class="quick-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            </a>
+            <a href="tel:+212522000000" class="quick-cat">
+                <span class="quick-cat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-2a2 2 0 0 1 2-2h1v-2a6 6 0 0 1 12 0v2h1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-3v-6"/><path d="M6 14v4a2 2 0 0 0 2 2h1"/></svg>
+                </span>
+                <span class="quick-cat-label" data-i18n="assist.call">Contacter un conseiller</span>
+                <span class="quick-cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            </a>
+        </div>
+    </section>
+
+    <!-- App Promo Banner -->
+    <section class="app-promo" data-reveal="up">
+        <div class="app-promo-inner">
+            <div class="app-promo-logo">
+                <div class="app-promo-logo-tile">
+                    <img src="images/logo-icon.svg" alt="">
+                </div>
+                <div class="app-promo-logo-name">May Cash</div>
+            </div>
+            <div class="app-promo-content">
+                <h2 data-i18n="promo.title">May Cash récompense ses clients fidèles</h2>
+                <p data-i18n="promo.desc">Profitez du programme May Cash fidélité et gagnez plein de réductions, cadeaux et des avantages auprès de nos partenaires.</p>
+                <div class="app-promo-badges">
+                    <a href="#" aria-label="Télécharger sur Google Play"><img class="app-badge" src="images/googleplay.svg" alt="Google Play"></a>
+                    <a href="#" aria-label="Télécharger sur l'App Store"><img class="app-badge" src="images/appstore.svg" alt="App Store"></a>
+                </div>
+            </div>
+            <div class="app-promo-visual">
+                <img src="images/my_desktop.png" alt="App May Cash">
+            </div>
+        </div>
+    </section>
+
     <!-- Actualités -->
-    <section class="section-padding" id="blog" style="background: var(--gray-50);">
+    <section class="section-padding" id="blog">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px;">
                 <div>
                     <h2 class="reveal" data-i18n="blog.title">Actualités & Conseils</h2>
                     <p class="reveal" data-i18n="blog.subtitle">Restez informé sur nos services et l'actualité financière au Maroc.</p>
                 </div>
-                <a href="#" class="service-link reveal" style="margin-bottom: 10px;">Voir tout le blog &rarr;</a>
+                <a href="#" class="service-link reveal" style="margin-bottom: 10px;" data-i18n="blog.all">Voir tout le blog &rarr;</a>
             </div>
 
             <div class="blog-grid">
@@ -1379,13 +1699,13 @@
                         <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop" alt="International Transfer">
                     </div>
                     <div class="blog-body">
-                        <span class="blog-badge">Services</span>
-                        <h4>Comment envoyer de l'argent à l'international</h4>
-                        <p>Découvrez notre guide complet pour effectuer un transfert international rapide et sécurisé...</p>
+                        <span class="blog-badge" data-i18n="blog.1.tag">Services</span>
+                        <h4 data-i18n="blog.1.title">Comment envoyer de l'argent à l'international</h4>
+                        <p data-i18n="blog.1.desc">Découvrez notre guide complet pour effectuer un transfert international rapide et sécurisé...</p>
                         <div class="blog-footer">
-                            <span>10 Avril 2026</span>
+                            <span data-i18n="blog.1.date">10 Avril 2026</span>
                             <span>•</span>
-                            <span>3 min lecture</span>
+                            <span data-i18n="blog.1.time">3 min lecture</span>
                         </div>
                     </div>
                 </div>
@@ -1394,13 +1714,13 @@
                         <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop" alt="Madmoun Wallet">
                     </div>
                     <div class="blog-body">
-                        <span class="blog-badge">Wallet</span>
-                        <h4>Madmoun : votre portefeuille digital expliqué</h4>
-                        <p>Tout ce que vous devez savoir sur le wallet Madmoun : inscription, recharge et paiements...</p>
+                        <span class="blog-badge" data-i18n="blog.2.tag">Wallet</span>
+                        <h4 data-i18n="blog.2.title">Madmoun : votre portefeuille digital expliqué</h4>
+                        <p data-i18n="blog.2.desc">Tout ce que vous devez savoir sur le wallet Madmoun : inscription, recharge et paiements...</p>
                         <div class="blog-footer">
-                            <span>5 Avril 2026</span>
+                            <span data-i18n="blog.2.date">5 Avril 2026</span>
                             <span>•</span>
-                            <span>4 min lecture</span>
+                            <span data-i18n="blog.2.time">4 min lecture</span>
                         </div>
                     </div>
                 </div>
@@ -1409,15 +1729,55 @@
                         <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop" alt="Franchise">
                     </div>
                     <div class="blog-body">
-                        <span class="blog-badge">Franchise</span>
-                        <h4>5 raisons de devenir franchisé en 2026</h4>
-                        <p>Le marché des services financiers de proximité au Maroc est en pleine croissance. Rejoignez-nous.</p>
+                        <span class="blog-badge" data-i18n="blog.3.tag">Franchise</span>
+                        <h4 data-i18n="blog.3.title">5 raisons de devenir franchisé en 2026</h4>
+                        <p data-i18n="blog.3.desc">Le marché des services financiers de proximité au Maroc est en pleine croissance. Rejoignez-nous.</p>
                         <div class="blog-footer">
-                            <span>1 Avril 2026</span>
+                            <span data-i18n="blog.3.date">1 Avril 2026</span>
                             <span>•</span>
-                            <span>5 min lecture</span>
+                            <span data-i18n="blog.3.time">5 min lecture</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agency Locator -->
+    <section class="section-padding" id="locator">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 class="reveal" data-i18n="locator.title">Trouvez l'agence la plus proche</h2>
+                <p class="reveal" data-i18n="locator.subtitle">Plus de 500 agences à votre service à travers tout le Maroc</p>
+            </div>
+
+            <div class="locator-container reveal">
+                <div class="locator-map">
+                    <div id="morocco-map"></div>
+                </div>
+                <div class="locator-content">
+                    <div class="search-mock">
+                        <span data-i18n="locator.search">Rechercher une ville...</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </div>
+                    <div class="agency-list">
+                        <div class="agency-card">
+                            <h5 data-i18n="agency.1.name">May Cash — Casablanca Maarif</h5>
+                            <p data-i18n="agency.1.addr">123 Bd Zerktouni, Casablanca</p>
+                            <p><strong data-i18n="agency.hours">Lun-Sam:</strong> <span data-i18n="agency.hours1">8h-20h</span></p>
+                        </div>
+                        <div class="agency-card">
+                            <h5 data-i18n="agency.2.name">May Cash — Rabat Agdal</h5>
+                            <p data-i18n="agency.2.addr">45 Av. Fal Ould Oumeir, Rabat</p>
+                            <p><strong data-i18n="agency.hours">Lun-Sam:</strong> <span data-i18n="agency.hours1">8h-20h</span></p>
+                        </div>
+                        <div class="agency-card">
+                            <h5 data-i18n="agency.3.name">May Cash — Marrakech Guéliz</h5>
+                            <p data-i18n="agency.3.addr">78 Av. Mohammed V, Marrakech</p>
+                            <p><strong data-i18n="agency.hours">Lun-Sam:</strong> <span data-i18n="agency.hours2">9h-19h</span></p>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary" style="margin-top: 30px; width: 100%;" data-i18n="locator.cta">Voir toutes les agences</a>
                 </div>
             </div>
         </div>
@@ -1427,7 +1787,6 @@
     <div class="trust-banner">
         <div class="marquee">
             <div class="marquee-track">
-                <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=bkam.ma" alt="" onerror="this.style.display='none'">Bank Al-Maghrib</span>
                 <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=attijariwafabank.com" alt="" onerror="this.style.display='none'">Attijariwafa Bank</span>
                 <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=bankofafrica.ma" alt="" onerror="this.style.display='none'">Bank of Africa</span>
                 <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=cihbank.ma" alt="" onerror="this.style.display='none'">CIH Bank</span>
@@ -1436,7 +1795,6 @@
                 <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=inwi.ma" alt="" onerror="this.style.display='none'">inwi</span>
                 <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=redal.ma" alt="" onerror="this.style.display='none'">Redal</span>
                 <!-- Duplicate for seamless loop -->
-                <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=bkam.ma" alt="" onerror="this.style.display='none'">Bank Al-Maghrib</span>
                 <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=attijariwafabank.com" alt="" onerror="this.style.display='none'">Attijariwafa Bank</span>
                 <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=bankofafrica.ma" alt="" onerror="this.style.display='none'">Bank of Africa</span>
                 <span class="partner-logo"><img src="https://www.google.com/s2/favicons?sz=128&domain=cihbank.ma" alt="" onerror="this.style.display='none'">CIH Bank</span>
@@ -1620,6 +1978,22 @@
             'hero.s2.cta1':  { fr: 'Envoyer maintenant', ar: 'أرسل الآن' },
             'hero.s2.cta2':  { fr: 'Trouver une agence', ar: 'ابحث عن وكالة' },
 
+            'quick.title':    { fr: 'Que recherchez-vous\u00A0?', ar: 'ماذا تبحث عن؟' },
+            'quick.transfer': { fr: "Transfert d'argent",       ar: 'تحويل الأموال' },
+            'quick.topup':    { fr: 'Recharge mobile',          ar: 'تعبئة الهاتف' },
+            'quick.bills':    { fr: 'Paiement factures',        ar: 'دفع الفواتير' },
+            'quick.wallet':   { fr: 'Wallet Madmoun',           ar: 'محفظة مضمون' },
+            'quick.exchange': { fr: 'Change de devises',        ar: 'صرف العملات' },
+            'quick.agency':   { fr: 'Trouver une agence',       ar: 'البحث عن وكالة' },
+
+            'assist.title': { fr: 'Assistance',              ar: 'المساعدة' },
+            'assist.ask':   { fr: 'Poser une question',      ar: 'اطرح سؤالاً' },
+            'assist.find':  { fr: 'Trouver une agence',      ar: 'ابحث عن وكالة' },
+            'assist.call':  { fr: 'Contacter un conseiller', ar: 'اتصل بمستشار' },
+
+            'promo.title': { fr: 'May Cash récompense ses clients fidèles', ar: 'ماي كاش تكافئ عملاءها الأوفياء' },
+            'promo.desc':  { fr: "Profitez du programme May Cash fidélité et gagnez plein de réductions, cadeaux et des avantages auprès de nos partenaires.", ar: 'استفد من برنامج ماي كاش للولاء واربح العديد من التخفيضات والهدايا والمزايا لدى شركائنا.' },
+
             'services.title':     { fr: 'Nos Services',     ar: 'خدماتنا' },
             'services.subtitle':  { fr: "Des solutions financières adaptées à votre quotidien pour simplifier vos transactions.", ar: 'حلول مالية مصممة لحياتك اليومية لتبسيط معاملاتك.' },
             'services.c1.title':  { fr: "Transfert d'argent", ar: 'تحويل الأموال' },
@@ -1640,6 +2014,10 @@
             'why.2.title':   { fr: 'La sécurité de vos transactions garantie', ar: 'أمان معاملاتك مضمون' },
             'why.2.desc':    { fr: "May Cash est une filiale de Maymouna Services Financiers, opérateur agréé par Bank Al-Maghrib. Vos transactions sont protégées par les normes de sécurité les plus strictes du secteur financier.", ar: 'ماي كاش شركة تابعة لميمونة للخدمات المالية، المعتمدة من بنك المغرب. معاملاتك محمية وفق أعلى معايير الأمان في القطاع المالي.' },
 
+            'why.3.tag':     { fr: 'RAPIDITÉ',      ar: 'السرعة' },
+            'why.3.title':   { fr: 'Envois instantanés, 24h/24', ar: 'تحويلات فورية، 24/24' },
+            'why.3.desc':    { fr: "Vos transferts sont effectués en temps réel, à toute heure du jour et de la nuit. Plus besoin d'attendre les horaires d'ouverture — envoyez, recevez et payez quand vous voulez, depuis votre téléphone ou dans l'agence la plus proche.", ar: 'تتم تحويلاتك في الوقت الفعلي، في أي ساعة ليلاً أو نهاراً. لا داعي لانتظار ساعات العمل — أرسل واستقبل وادفع متى شئت، من هاتفك أو من أقرب وكالة.' },
+
             'locator.title':    { fr: "Trouvez l'agence la plus proche", ar: 'ابحث عن أقرب وكالة' },
             'locator.subtitle': { fr: 'Plus de 500 agences à votre service à travers tout le Maroc', ar: 'أكثر من 500 وكالة في خدمتك في جميع أنحاء المغرب' },
             'locator.search':   { fr: 'Rechercher une ville...', ar: 'ابحث عن مدينة...' },
@@ -1656,6 +2034,32 @@
 
             'blog.title':    { fr: 'Actualités & Conseils', ar: 'أخبار ونصائح' },
             'blog.subtitle': { fr: "Restez informé sur nos services et l'actualité financière au Maroc.", ar: 'ابقَ على اطلاع على خدماتنا وآخر الأخبار المالية في المغرب.' },
+            'blog.all':      { fr: 'Voir tout le blog →', ar: 'كل المقالات ←' },
+            'blog.1.tag':    { fr: 'Services', ar: 'الخدمات' },
+            'blog.1.title':  { fr: "Comment envoyer de l'argent à l'international", ar: 'كيف ترسل المال إلى الخارج' },
+            'blog.1.desc':   { fr: "Découvrez notre guide complet pour effectuer un transfert international rapide et sécurisé...", ar: 'اكتشف دليلنا الكامل لإجراء تحويل دولي سريع وآمن...' },
+            'blog.1.date':   { fr: '10 Avril 2026', ar: '10 أبريل 2026' },
+            'blog.1.time':   { fr: '3 min lecture', ar: '3 دقائق قراءة' },
+            'blog.2.tag':    { fr: 'Wallet', ar: 'المحفظة' },
+            'blog.2.title':  { fr: 'Madmoun : votre portefeuille digital expliqué', ar: 'مضمون: محفظتك الرقمية بكل بساطة' },
+            'blog.2.desc':   { fr: "Tout ce que vous devez savoir sur le wallet Madmoun : inscription, recharge et paiements...", ar: 'كل ما تحتاج معرفته عن محفظة مضمون: التسجيل والشحن والدفع...' },
+            'blog.2.date':   { fr: '5 Avril 2026', ar: '5 أبريل 2026' },
+            'blog.2.time':   { fr: '4 min lecture', ar: '4 دقائق قراءة' },
+            'blog.3.tag':    { fr: 'Franchise', ar: 'الامتياز' },
+            'blog.3.title':  { fr: '5 raisons de devenir franchisé en 2026', ar: '5 أسباب لتصبح شريكاً في 2026' },
+            'blog.3.desc':   { fr: "Le marché des services financiers de proximité au Maroc est en pleine croissance. Rejoignez-nous.", ar: 'سوق الخدمات المالية القريبة في المغرب في نمو مستمر. انضم إلينا.' },
+            'blog.3.date':   { fr: '1 Avril 2026', ar: '1 أبريل 2026' },
+            'blog.3.time':   { fr: '5 min lecture', ar: '5 دقائق قراءة' },
+
+            'agency.1.name': { fr: 'May Cash — Casablanca Maarif', ar: 'ماي كاش — الدار البيضاء، المعاريف' },
+            'agency.1.addr': { fr: '123 Bd Zerktouni, Casablanca', ar: '123 شارع الزرقطوني، الدار البيضاء' },
+            'agency.2.name': { fr: 'May Cash — Rabat Agdal', ar: 'ماي كاش — الرباط، أكدال' },
+            'agency.2.addr': { fr: '45 Av. Fal Ould Oumeir, Rabat', ar: '45 شارع فال ولد عمير، الرباط' },
+            'agency.3.name': { fr: 'May Cash — Marrakech Guéliz', ar: 'ماي كاش — مراكش، جيليز' },
+            'agency.3.addr': { fr: '78 Av. Mohammed V, Marrakech', ar: '78 شارع محمد الخامس، مراكش' },
+            'agency.hours':  { fr: 'Lun-Sam:', ar: 'الاثنين-السبت:' },
+            'agency.hours1': { fr: '8h-20h', ar: '8:00 - 20:00' },
+            'agency.hours2': { fr: '9h-19h', ar: '9:00 - 19:00' },
 
             'footer.about':    { fr: 'À propos',     ar: 'من نحن' },
             'footer.services': { fr: 'Services',     ar: 'الخدمات' },
